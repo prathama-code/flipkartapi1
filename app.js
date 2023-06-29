@@ -66,23 +66,12 @@ app.get('/category',async (req,res)=>{
  })
 
 //  DETAILS
-app.get('/details/:id',async(req,res)=>{
-    let id = Number(req.params.id);
-    let query = {
-        category_id : id
-    }
-    let collection = "details";
-    let output = await getData(collection,query);
-    res.send(output);
-})
-app.get('/detailAll/:id',async(req,res)=>{
-    let id = Number(req.params.id);
-    let query = {
-        category_id : id
-    }
+app.get('/detailAll/:id', async(req,res) => {
+    let id = new Mongo.ObjectId(req.params.id)
+    let query = {_id:id}
     let collection = "detailAll";
     let output = await getData(collection,query);
-    res.send(output);
+    res.send(output)
 })
 
 // ORDERS
