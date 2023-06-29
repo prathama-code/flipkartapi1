@@ -71,7 +71,16 @@ app.get('/details/:id',async(req,res)=>{
     let query = {
         category_id : id
     }
-    let collection = "productsAll";
+    let collection = "details";
+    let output = await getData(collection,query);
+    res.send(output);
+})
+app.get('/detailAll/:id',async(req,res)=>{
+    let id = Number(req.params.id);
+    let query = {
+        category_id : id
+    }
+    let collection = "detailAll";
     let output = await getData(collection,query);
     res.send(output);
 })
