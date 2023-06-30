@@ -92,7 +92,7 @@ app.get('/orders',async(req,res) => {
 })
 
 // PLACE ORDER
-app.post('/placeOrder',async(req,res) => {
+app.post('/ordersallinone',async(req,res) => {
     let data = req.body;
     let collection = "ordersallinone";
     console.log(">>>",data)
