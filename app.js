@@ -94,7 +94,7 @@ app.get('/ordersallinone',async(req,res) => {
 // PLACE ORDER
 app.post('/placeOrder',async(req,res) => {
     let data = req.body;
-    let collection = "ordersallinone";
+    let collection = "placeOrder";
     console.log(">>>",data)
     let response = await postData(collection,data)
     res.send(response)
