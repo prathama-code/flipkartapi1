@@ -78,7 +78,7 @@ app.get('/details/:id',async(req,res)=>{
 
 // ORDERS
 
-app.get('/ordersallinone',async(req,res) => {
+app.get('/orders',async(req,res) => {
     let query = {};
     if(req.query.email){
         query={email:req.query.email}
@@ -86,7 +86,7 @@ app.get('/ordersallinone',async(req,res) => {
         query = {}
     }
    
-    let collection = "ordersallinone";
+    let collection = "orders";
     let output = await getData(collection,query);
     res.send(output)
 })
