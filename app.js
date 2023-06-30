@@ -78,7 +78,7 @@ app.get('/details/:id',async(req,res)=>{
 
 // ORDERS
 
-app.get('/orders',async(req,res) => {
+app.get('/ordersallinone',async(req,res) => {
     let query = {};
     if(req.query.email){
         query={email:req.query.email}
@@ -86,13 +86,13 @@ app.get('/orders',async(req,res) => {
         query = {}
     }
    
-    let collection = "orders";
+    let collection = "ordersallinone";
     let output = await getData(collection,query);
     res.send(output)
 })
 
 // PLACE ORDER
-app.post('/ordersallinone',async(req,res) => {
+app.post('/placeOrder',async(req,res) => {
     let data = req.body;
     let collection = "ordersallinone";
     console.log(">>>",data)
