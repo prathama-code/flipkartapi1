@@ -65,6 +65,35 @@ app.get('/category',async (req,res)=>{
      res.send(output)
  })
 
+
+// FILTERS
+
+app.get('/filter/:categoryid', async(req,res) => {
+    let categoryid = Number(req.params.categoryid);
+    // let cuisineId = Number(req.query.cuisineId)
+    let lcost = Number(req.query.lcost)
+    let hcost = Number(req.query.hcost)
+    // if(cuisineId){
+    //     query = {
+    //         "mealTypes.mealtype_id":mealId,
+    //         "cuisines.cuisine_id":cuisineId
+    //     }
+    // }
+    if(lcost && hcost){
+        query = {
+            "category_id":categoryid,
+            $and:[{cost:{$gt:lcost,$lt:hcost}}]
+        }
+    }
+    else{
+        query = {}
+    }
+    let collection = "detailAll";
+    let output = await getData(collection,query);
+    res.send(output)
+})
+
+
 //  DETAILS
 app.get('/details/:id',async(req,res)=>{
     let id = Number(req.params.id);
@@ -78,7 +107,7 @@ app.get('/details/:id',async(req,res)=>{
 
 // ORDERS
 
-app.get('/orders',async(req,res) => {
+app.get('/ordesallinone',async(req,res) => {
     let query = {};
     if(req.query.email){
         query={email:req.query.email}
@@ -86,7 +115,7 @@ app.get('/orders',async(req,res) => {
         query = {}
     }
    
-    let collection = "orders";
+    let collection = "ordersallinone";
     let output = await getData(collection,query);
     res.send(output)
 })
